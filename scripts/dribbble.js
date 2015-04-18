@@ -69,9 +69,18 @@ function parseShots (shots)
 		
 		var htmlString = "\n<ul>\n"
 
+
 		for (var i = 0; i < dribbble.shotLimit; i++)
 		{
 			var shot = dribbble.allShots[i];
+
+			// Image is an animated Gif
+      if (shot.image_url.indexOf(".gif") > -1) {
+        dribbble.shotLimit++;
+        
+        continue;
+      }
+      
 			htmlString = htmlString+"\n<li class=\"dribbble_shot\">";
 			htmlString = htmlString+"<a href=\""+shot.url+"\">";
 			htmlString = htmlString+"<img src=\""+shot.image_url+"\" alt=\""+shot.title+"\" />";
